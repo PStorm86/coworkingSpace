@@ -5,21 +5,21 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import ch.qos.logback.core.status.StatusUtil;
-import ch.zli.m223.model.Booking;
+import ch.zli.m223.model.Ticketing;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity(name="Booking")
-public class BookingImpl implements Booking{
+public class TicketingImpl implements Ticketing{
 
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne
-    private AppUserImpl appUser;
+    private Long appUser;
 
     @DateTimeFormat
     private Date date;
@@ -30,8 +30,8 @@ public class BookingImpl implements Booking{
     private StatusImpl status;
 
 
-    public BookingImpl(
-        Long id, AppUserImpl user, 
+    public TicketingImpl(
+        Long id, Long user, 
         Date date, Boolean morning, 
         Boolean afternoon, StatusImpl status) {
             this.id = id;
@@ -43,7 +43,7 @@ public class BookingImpl implements Booking{
     }
 
     /** For JPA use only */
-    protected BookingImpl() {} 
+    protected TicketingImpl() {} 
 
     @Override
     public Long getId() {
@@ -51,7 +51,7 @@ public class BookingImpl implements Booking{
     }
 
     @Override
-    public AppUserImpl getAppUser() {
+    public Long getAppUser() {
         return appUser;
     }
 
@@ -88,7 +88,7 @@ public class BookingImpl implements Booking{
     }
 
     public void setAppUser(AppUserImpl user) {
-        this.appUser = user;
+        this.appUser = user.getId();
     }
 
     public void setStatus(StatusImpl status) {

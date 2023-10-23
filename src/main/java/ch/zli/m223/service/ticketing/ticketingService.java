@@ -1,18 +1,28 @@
 package ch.zli.m223.service.ticketing;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-import ch.zli.m223.model.Booking;
-import ch.zli.m223.model.impl.AppUserImpl;
+import ch.zli.m223.model.Ticketing;
 import ch.zli.m223.model.impl.StatusImpl;
+import ch.zli.m223.service.user.exception.InvalidIdException;
 
 public interface ticketingService {
 
     /**
-     * @return a possibly empty list of booking
+     * @return a possibly empty list of tickets
      */
-    List<Booking> getBookingList();
+    List<Ticketing> getTicketsList();
+
+    /**
+     * 
+     * @param appUser
+     * @return a possibly empty list of tickets
+     */
+    List<Ticketing> getTicketsList(Principal principal);
+
+    Ticketing getTicket(Long id);
 
     /**
      * Add a new booking
@@ -23,21 +33,22 @@ public interface ticketingService {
      * @param status status of this booking (Enum: NEW, REJECTED, BOOKED)
      * @return
      */
-    Booking addBooking(
-        AppUserImpl user, Date date,
+    Ticketing addTicket(
+        Long user, Date date,
         Boolean morning, Boolean afternoon,
         StatusImpl status
     );
+ 
 
     /**
-     * Delete a booking
+     * Delete a ticket
      * @param id
      * @throws InvalidIdException
      */
-    void deleteBooking(Long id);
+    void deleteTicket(Long id);
 
     /**
-     * update a booking
+     * update a ticket
      * @param id the booking id
      * @param user the user id
      * @param date the date when the room is booked
@@ -47,11 +58,13 @@ public interface ticketingService {
      * @return the changed booking
      * @throws InvalidIdException
      */
-    Booking updateBooking(
+    Ticketing updateTicket(
         Long id,
-        AppUserImpl user, Date date,
+        Long user, Date date,
         Boolean morning, Boolean afternoon,
         StatusImpl status
     );
+
+    Ticketing setStatus(Long id, StatusImpl status);
 
 }

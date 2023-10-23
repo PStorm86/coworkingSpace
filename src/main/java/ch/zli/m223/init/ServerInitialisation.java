@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ch.zli.m223.repository.RoleRepository;
 import ch.zli.m223.roles.UserRoles;
+import ch.zli.m223.service.ticketing.ticketingService;
 import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +17,7 @@ public class ServerInitialisation implements ApplicationRunner {
 
     private final UserService userService;
     private final RoleRepository roleRepository;
+    private final ticketingService ticketingService;
 
     @Value("${test.data.create.user:false}")
     private boolean createTestDataForUser;
@@ -30,6 +32,14 @@ public class ServerInitialisation implements ApplicationRunner {
             userService.addUser("Max", "Werner", "max@werner.com", "maxwerner");
             userService.addUser("Mini", "Max", "mini@max.com", "minimax");
             userService.addUser("Lady", "Gaga", "lady@gaga.com", "ladygaga");
+
+            ticketingService.addTicket(null, null, true, true, null);
+            ticketingService.addTicket(null, null, true, false, null);
+            ticketingService.addTicket(null, null, false, true, null);
+            ticketingService.addTicket(null, null, false, true, null);
+            ticketingService.addTicket(null, null, true, true, null);
+            ticketingService.addTicket(null, null, true, false, null);
+            ticketingService.addTicket(null, null, true, true, null);
         }
     }
     
