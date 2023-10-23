@@ -2,6 +2,7 @@ package ch.zli.m223.controller.ticketing;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.zli.m223.controller.ticketing.dto.TicketDto;
+import ch.zli.m223.model.impl.AppUserImpl;
 import ch.zli.m223.model.impl.StatusImpl;
 import ch.zli.m223.service.ticketing.ticketingService;
+import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserMemberTicketingController {
 
-    private final ticketingService ticketingService;    
+    private final ticketingService ticketingService;  
 
     /**
      * Get a list of tickets only from this member
@@ -31,7 +34,10 @@ public class UserMemberTicketingController {
      */
     @GetMapping("")
     List<TicketDto> getTicketsList(Principal principal) {
-        return null;
+        return ticketingService.getTicketsList().stream()
+        .filter((ticket) -> ticket.getAppUser() == ticket.getAppUser())
+        .map(ticket -> new TicketDto(ticket))
+        .collect(Collectors.toList());
     }
 
 
