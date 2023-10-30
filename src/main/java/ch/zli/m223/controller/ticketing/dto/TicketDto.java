@@ -1,7 +1,7 @@
 package ch.zli.m223.controller.ticketing.dto;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import ch.zli.m223.model.Ticketing;
 import ch.zli.m223.model.impl.StatusImpl;
@@ -9,7 +9,7 @@ import ch.zli.m223.model.impl.StatusImpl;
 public class TicketDto {
     public Long id;
     public Long appUser;
-    public Date date;
+    public LocalDate date;
     public boolean morning;
     public boolean afternoon;
     public StatusImpl status;

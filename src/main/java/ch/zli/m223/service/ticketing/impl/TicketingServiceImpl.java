@@ -1,17 +1,17 @@
 package ch.zli.m223.service.ticketing.impl;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import ch.zli.m223.model.Ticketing;
-import ch.zli.m223.model.impl.AppUserImpl;
 import ch.zli.m223.model.impl.StatusImpl;
 import ch.zli.m223.repository.TicketingRepository;
 import ch.zli.m223.service.ticketing.ticketingService;
+import ch.zli.m223.service.ticketing.exception.InvalidStatusException;
 import ch.zli.m223.service.ticketing.exception.TicketNotFoundException;
 import ch.zli.m223.service.user.exception.InvalidIdException;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,7 @@ public class TicketingServiceImpl implements ticketingService {
 
     @Override
     public Ticketing addTicket(
-        Long user, Date date, 
+        Long user, LocalDate date, 
         Boolean morning, Boolean afternoon, 
         StatusImpl status) {
 
@@ -54,7 +54,7 @@ public class TicketingServiceImpl implements ticketingService {
     @Override
     public Ticketing updateTicket(
         Long id, Long user, 
-        Date date, Boolean morning, 
+        LocalDate date, Boolean morning, 
         Boolean afternoon, StatusImpl status) {
         
         return ticketingRepository.update(
@@ -64,6 +64,12 @@ public class TicketingServiceImpl implements ticketingService {
 
     @Override
     public Ticketing setStatus(Long id, StatusImpl status) {
+        if (id == null) {
+            throw new InvalidIdException();
+        }
+        if (status == null) {
+            throw new InvalidStatusException();
+        }
         return ticketingRepository.update(null, null, null, null, status);
     }
 

@@ -1,7 +1,7 @@
 package ch.zli.m223.service.ticketing;
 
 import java.security.Principal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import ch.zli.m223.model.Ticketing;
@@ -34,7 +34,7 @@ public interface ticketingService {
      * @return
      */
     Ticketing addTicket(
-        Long user, Date date,
+        Long user, LocalDate date,
         Boolean morning, Boolean afternoon,
         StatusImpl status
     );
@@ -60,7 +60,7 @@ public interface ticketingService {
      */
     Ticketing updateTicket(
         Long id,
-        Long user, Date date,
+        Long user, LocalDate date,
         Boolean morning, Boolean afternoon,
         StatusImpl status
     );

@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.zli.m223.controller.ticketing.dto.TicketDto;
-import ch.zli.m223.model.impl.AppUserImpl;
 import ch.zli.m223.model.impl.StatusImpl;
 import ch.zli.m223.service.ticketing.ticketingService;
-import ch.zli.m223.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 
 @RestController

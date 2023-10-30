@@ -12,6 +12,9 @@ Unsere Applikation kennt drei Arten von Benutzer
 ## Use Case 'User Application'
 ![](./uml/picts/UseCaseUserApplication.jpg)
 
+## Use Case 'Booking Application'
+![](./uml/picts/Anwendungsfalldiagramm.png)
+
 # REST Interface
 Ein REST Aufruf können sie sich als HTTP-Anfragen an einen bestimmten Pfad (URL) vorstellen. Jede Anfrage wird mit einem bestimmten HTTP-Verb (GET, POST, PUT, PATCH, DELETE) gesendet, so dass die gewünschte Aktion bestimmt werden kann.
 

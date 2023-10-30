@@ -1,13 +1,13 @@
 package ch.zli.m223.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import ch.zli.m223.model.impl.StatusImpl;
 
 public interface Ticketing {
     Long getId();
     Long getAppUser();
-    Date getDate();
+    LocalDate getDate();
     Boolean getMorning();
     Boolean getAfternoon();
     StatusImpl getStatus();

@@ -1,10 +1,9 @@
 package ch.zli.m223.model.impl;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import ch.qos.logback.core.status.StatusUtil;
 import ch.zli.m223.model.Ticketing;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +21,7 @@ public class TicketingImpl implements Ticketing{
     private Long appUser;
 
     @DateTimeFormat
-    private Date date;
+    private LocalDate date;
 
     private Boolean morning;
     private Boolean afternoon;
@@ -32,7 +31,7 @@ public class TicketingImpl implements Ticketing{
 
     public TicketingImpl(
         Long id, Long user, 
-        Date date, Boolean morning, 
+        LocalDate date, Boolean morning, 
         Boolean afternoon, StatusImpl status) {
             this.id = id;
             this.appUser = user;
@@ -56,7 +55,7 @@ public class TicketingImpl implements Ticketing{
     }
 
     @Override
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -75,7 +74,7 @@ public class TicketingImpl implements Ticketing{
         return status;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
