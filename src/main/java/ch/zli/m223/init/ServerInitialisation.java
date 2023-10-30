@@ -7,7 +7,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import ch.zli.m223.model.impl.AppUserImpl;
 import ch.zli.m223.model.impl.StatusImpl;
 import ch.zli.m223.repository.RoleRepository;
 import ch.zli.m223.roles.UserRoles;
