@@ -11,14 +11,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity(name="Booking")
-public class TicketingImpl implements Ticketing{
+public class TicketingImpl implements Ticketing {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne
-    private Long appUser;
+    private AppUserImpl appUser;
 
     @DateTimeFormat
     private LocalDate date;
@@ -30,10 +30,10 @@ public class TicketingImpl implements Ticketing{
 
 
     public TicketingImpl(
-        Long id, Long user, 
+        Long id,
+        AppUserImpl user, 
         LocalDate date, Boolean morning, 
         Boolean afternoon, StatusImpl status) {
-            this.id = id;
             this.appUser = user;
             this.date = date;
             this.morning = morning;
@@ -50,7 +50,7 @@ public class TicketingImpl implements Ticketing{
     }
 
     @Override
-    public Long getAppUser() {
+    public AppUserImpl getAppUser() {
         return appUser;
     }
 
@@ -87,7 +87,7 @@ public class TicketingImpl implements Ticketing{
     }
 
     public void setAppUser(AppUserImpl user) {
-        this.appUser = user.getId();
+        this.appUser = user;
     }
 
     public void setStatus(StatusImpl status) {

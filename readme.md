@@ -17,7 +17,5 @@ Die Testdatenerzeugung finden sie in [ServerInitialisation.java](./src/main/java
 
 ## REST-API Test
 Sie finden die passenden Postman-Scripts im './src/test/postman' Verzeichnis. 
-- [Register](./src/test/postman/Register.postman_collection.json)
-- [Login](./src/test/postman/Login.postman_collection.json)
-- [Admin](./src/test/postman/Admin.postman_collection.json)
-- [Member](./src/test/postman/Member.postman_collection.json)
+- [Collection](./src/test/postman/RestApi.postman_collection.json)
+- [TestCollection](./src/test/postman/RestApiAutomatedTesting.postman_collection.json)

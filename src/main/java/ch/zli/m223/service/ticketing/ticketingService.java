@@ -4,7 +4,9 @@ import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
+import ch.zli.m223.model.AppUser;
 import ch.zli.m223.model.Ticketing;
+import ch.zli.m223.model.impl.AppUserImpl;
 import ch.zli.m223.model.impl.StatusImpl;
 import ch.zli.m223.service.user.exception.InvalidIdException;
 
@@ -34,7 +36,7 @@ public interface ticketingService {
      * @return
      */
     Ticketing addTicket(
-        Long user, LocalDate date,
+        AppUser user, LocalDate date,
         Boolean morning, Boolean afternoon,
         StatusImpl status
     );
@@ -60,7 +62,7 @@ public interface ticketingService {
      */
     Ticketing updateTicket(
         Long id,
-        Long user, LocalDate date,
+        AppUserImpl user, LocalDate date,
         Boolean morning, Boolean afternoon,
         StatusImpl status
     );

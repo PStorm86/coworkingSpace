@@ -123,4 +123,5 @@ public class AppUserImpl implements AppUser {
 
     @Override
     public boolean isEnabled() { return true; }
+
 }

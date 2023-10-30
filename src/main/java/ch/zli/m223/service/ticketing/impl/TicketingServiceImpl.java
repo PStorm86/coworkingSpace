@@ -5,14 +5,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.stereotype.Service;
 
+import ch.zli.m223.model.AppUser;
 import ch.zli.m223.model.Ticketing;
+import ch.zli.m223.model.impl.AppUserImpl;
 import ch.zli.m223.model.impl.StatusImpl;
 import ch.zli.m223.repository.TicketingRepository;
 import ch.zli.m223.service.ticketing.ticketingService;
 import ch.zli.m223.service.ticketing.exception.InvalidStatusException;
 import ch.zli.m223.service.ticketing.exception.TicketNotFoundException;
+import ch.zli.m223.service.user.UserService;
 import ch.zli.m223.service.user.exception.InvalidIdException;
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class TicketingServiceImpl implements ticketingService {
 
     private final TicketingRepository ticketingRepository;
+    private final UserService userService;
 
     @Override
     public List<Ticketing> getTicketsList() {
@@ -35,11 +40,13 @@ public class TicketingServiceImpl implements ticketingService {
 
     @Override
     public Ticketing addTicket(
-        Long user, LocalDate date, 
+        AppUser userId, LocalDate date, 
         Boolean morning, Boolean afternoon, 
         StatusImpl status) {
 
         status = StatusImpl.New;
+        AppUser user =  userService.getUser(userId.getId());
+
         return ticketingRepository.addTicket(user, date, morning, afternoon, status);
     }
 
@@ -53,13 +60,11 @@ public class TicketingServiceImpl implements ticketingService {
 
     @Override
     public Ticketing updateTicket(
-        Long id, Long user, 
+        Long id, AppUserImpl user, 
         LocalDate date, Boolean morning, 
         Boolean afternoon, StatusImpl status) {
         
-        return ticketingRepository.update(
-            user, date, morning, afternoon, status
-        );
+        return ticketingRepository.update(null, user, date, morning, afternoon, status);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class TicketingServiceImpl implements ticketingService {
         if (status == null) {
             throw new InvalidStatusException();
         }
-        return ticketingRepository.update(null, null, null, null, status);
+        return ticketingRepository.update(null, null, null, null, null, status);
     }
 
     @Override
